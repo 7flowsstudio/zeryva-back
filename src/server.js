@@ -18,8 +18,9 @@ app.use(
 	})
 );
 app.use(express.json());
-app.post("/api/upload", upload.single("file"), uploadImage);
+app.post("/api/upload", upload.array("file"), uploadImage);
 app.post("/api/send-email", jsonParser, ctrlWrapper(sendEmailController));
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
